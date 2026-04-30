@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/equation_balance.json",
+  "title": "Scene: equation_balance",
+  "description": "Visual balance/scales metaphor for equation operations.",
+  "type": "object",
+  "required": ["initial_equation", "operations"],
+  "additionalProperties": false,
+  "properties": {
+    "initial_equation": { "type": "string" },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["operation", "value"],
+        "properties": {
+          "operation": { "type": "string", "enum": ["add", "subtract", "multiply", "divide"] },
+          "value": { "type": "string" },
+          "narration_note": { "type": "string" }
+        }
+      }
+    },
+    "show_scales_metaphor": { "type": "boolean", "default": true }
+  }
+}

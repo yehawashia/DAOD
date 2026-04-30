@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "golden_id": "GE-Y11-GE-CIR-001",
+    "author": "cowork-seed",
+    "created_at": "2026-04-19",
+    "reviewed_by": null,
+    "review_notes": "Seed example — review pending.",
+    "curriculum_ref": "NC-MA-KS4-G",
+    "exam_board_refs": ["AQA 8300: G10 (Higher)", "Edexcel 1MA1: G10 (Higher)"],
+    "blueprint_section": "5.4"
+  },
+  "input": {
+    "curriculum": "UK Maths",
+    "year_group": "Year 11",
+    "topic": "circle theorems",
+    "lesson_mode": "teach_topic",
+    "max_segments": 6,
+    "allowed_scene_types": [
+      "title_intro",
+      "definition_card",
+      "geometry_construction",
+      "geometry_proof",
+      "misconception_alert",
+      "recap_summary"
+    ],
+    "student_context": {
+      "confidence_level": "high",
+      "preferred_pace": "normal"
+    }
+  },
+  "output": {
+    "lesson_title": "Circle Theorems: Angle at the Centre",
+    "objective": "Apply the circle theorem that the angle at the centre is twice the angle at the circumference.",
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "scene_type": "title_intro",
+        "duration_target_sec": 6,
+        "narration": "Today we look at the first and most powerful circle theorem: the angle at the centre.",
+        "subtitle": "Angle at the Centre Theorem",
+        "visual": {
+          "title": "Circle Theorems",
+          "subtitle": "Angle at the Centre",
+          "year_group_badge": "Year 11",
+          "objective_text": "The angle at the centre is twice the angle at the circumference."
+        }
+      },
+      {
+        "segment_id": "seg_002",
+        "scene_type": "definition_card",
+        "duration_target_sec": 10,
+        "narration": "When two chords meet the circumference at point P, and both chords extend to points A and B on the circle, the angle at the centre is double the angle at the circumference.",
+        "subtitle": "Centre angle = 2 × circumference angle",
+        "visual": {
+          "term": "Angle at the Centre Theorem",
+          "definition": "The angle subtended by an arc at the centre of a circle is twice the angle subtended by the same arc at the circumference.",
+          "key_terms": ["arc", "chord", "subtended", "centre"],
+          "example": "If ∠APB = 40°, then ∠AOB = 80°."
+        }
+      },
+      {
+        "segment_id": "seg_003",
+        "scene_type": "geometry_construction",
+        "duration_target_sec": 14,
+        "narration": "Draw a circle with centre O. Mark points A and B on the circumference, and P elsewhere on the circumference. Join OA, OB, PA, PB.",
+        "subtitle": "Construct the configuration",
+        "visual": {
+          "elements": [
+            { "type": "circle", "id": "c1", "coords": [0, 0, 3], "label": "O" },
+            { "type": "point", "id": "O", "coords": [0, 0], "label": "O" },
+            { "type": "point", "id": "A", "coords": [-2.12, -2.12], "label": "A" },
+            { "type": "point", "id": "B", "coords": [2.12, -2.12], "label": "B" },
+            { "type": "point", "id": "P", "coords": [0, 3], "label": "P" },
+            { "type": "segment", "id": "OA", "coords": [0, 0, -2.12, -2.12] },
+            { "type": "segment", "id": "OB", "coords": [0, 0, 2.12, -2.12] },
+            { "type": "segment", "id": "PA", "coords": [0, 3, -2.12, -2.12] },
+            { "type": "segment", "id": "PB", "coords": [0, 3, 2.12, -2.12] },
+            { "type": "angle_arc", "id": "centre", "coords": [0, 0], "label": "2θ", "measurement": "90°" },
+            { "type": "angle_arc", "id": "circumference", "coords": [0, 3], "label": "θ", "measurement": "45°" }
+          ],
+          "background_grid": false
+        }
+      },
+      {
+        "segment_id": "seg_004",
+        "scene_type": "geometry_proof",
+        "duration_target_sec": 20,
+        "narration": "Split the figure along OP. Both triangles OPA and OPB are isosceles because OA, OB, and OP are all radii. Using the exterior angle of each triangle gives the result.",
+        "subtitle": "Proof via isosceles triangles",
+        "visual": {
+          "diagram": {
+            "elements": [
+              { "type": "circle", "id": "c", "coords": [0, 0, 3] },
+              { "type": "point", "id": "O", "coords": [0, 0], "label": "O" },
+              { "type": "point", "id": "A", "coords": [-2.12, -2.12], "label": "A" },
+              { "type": "point", "id": "B", "coords": [2.12, -2.12], "label": "B" },
+              { "type": "point", "id": "P", "coords": [0, 3], "label": "P" },
+              { "type": "segment", "id": "OP", "coords": [0, 0, 0, 3] }
+            ]
+          },
+          "steps": [
+            { "statement": "OA = OP = OB (all radii)", "reason": "Radii of the same circle are equal", "highlight_element_ids": ["O", "A", "P", "B"] },
+            { "statement": "Triangle OAP is isosceles ⇒ ∠OAP = ∠OPA = a", "reason": "Base angles of an isosceles triangle", "highlight_element_ids": ["O", "A", "P"] },
+            { "statement": "Triangle OBP is isosceles ⇒ ∠OBP = ∠OPB = b", "reason": "Base angles of an isosceles triangle", "highlight_element_ids": ["O", "B", "P"] },
+            { "statement": "Exterior angle at O in OAP = 2a; at O in OBP = 2b", "reason": "Exterior angle = sum of two interior opposite angles", "highlight_element_ids": ["O"] },
+            { "statement": "∠AOB = 2a + 2b = 2(a + b) = 2∠APB", "reason": "Angle at centre is twice angle at circumference", "highlight_element_ids": ["O", "P"] }
+          ]
+        }
+      },
+      {
+        "segment_id": "seg_005",
+        "scene_type": "misconception_alert",
+        "duration_target_sec": 12,
+        "narration": "A common mistake: applying the theorem when P is on the same side as the centre — here the reflex angle rule applies.",
+        "subtitle": "Watch the reflex case",
+        "visual": {
+          "mistaken_approach": {
+            "statement": "Assuming centre angle is always 2× circumference angle, regardless of P's position.",
+            "example": "When P is on the minor arc, the centre angle is the reflex angle — still 2× the circumference angle."
+          },
+          "correct_approach": {
+            "statement": "Identify which arc contains P; use the angle standing on the opposite arc at the centre.",
+            "example": "If ∠APB = 140°, the centre angle on the same side as P is the reflex: 2 × 140° = 280°."
+          },
+          "why_students_make_it": "They picture a single diagram and don't check the two possible arcs."
+        }
+      },
+      {
+        "segment_id": "seg_006",
+        "scene_type": "recap_summary",
+        "duration_target_sec": 10,
+        "narration": "Recap: draw the configuration, check which arc, remember the factor of two, and use isosceles radii in proofs.",
+        "subtitle": "Check the arc — factor of 2 — radii",
+        "visual": {
+          "key_points": [
+            "Centre angle is twice the circumference angle subtending the same arc.",
+            "Check which arc P sits on — reflex applies otherwise.",
+            "Radii are always equal, creating isosceles triangles.",
+            "Exterior-angle result is the key proof step."
+          ],
+          "closing_statement": "You can apply and prove the angle-at-the-centre theorem.",
+          "next_topic_suggestion": "Angles in the same segment"
+        }
+      }
+    ],
+    "branch_templates": [
+      {
+        "trigger_type": "concept_confusion",
+        "example_question": "What is 'subtended'?",
+        "branch_scene_type": "definition_card",
+        "branch_narration_template": "An arc subtends an angle when two chords from the arc's endpoints meet at a point — the angle at that meeting point is the subtended angle."
+      },
+      {
+        "trigger_type": "step_justification",
+        "example_question": "Why is OAP isosceles?",
+        "branch_scene_type": "geometry_proof",
+        "branch_narration_template": "OAP is isosceles because OA and OP are both radii of the circle, so they are equal in length — two equal sides means two equal base angles."
+      }
+    ]
+  }
+}

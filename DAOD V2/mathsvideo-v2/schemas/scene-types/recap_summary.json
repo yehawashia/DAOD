@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/recap_summary.json",
+  "title": "Scene: recap_summary",
+  "description": "End-of-lesson summary with key points animated.",
+  "type": "object",
+  "required": ["key_points"],
+  "additionalProperties": false,
+  "properties": {
+    "key_points": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": { "type": "string" }
+    },
+    "closing_statement": { "type": "string" },
+    "next_topic_suggestion": { "type": "string" }
+  }
+}

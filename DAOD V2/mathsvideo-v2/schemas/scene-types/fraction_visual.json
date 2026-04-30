@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/fraction_visual.json",
+  "title": "Scene: fraction_visual",
+  "description": "Bar/pie fraction representations with splitting/combining.",
+  "type": "object",
+  "required": ["representation", "fractions"],
+  "additionalProperties": false,
+  "properties": {
+    "representation": { "type": "string", "enum": ["bar", "pie", "number_line"] },
+    "fractions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["numerator", "denominator"],
+        "properties": {
+          "numerator": { "type": "integer" },
+          "denominator": { "type": "integer", "minimum": 1 },
+          "label": { "type": "string" },
+          "color": { "type": "string" }
+        }
+      }
+    },
+    "operation": {
+      "type": "string",
+      "enum": ["add", "subtract", "multiply", "divide", "compare", "simplify", "none"],
+      "default": "none"
+    }
+  }
+}

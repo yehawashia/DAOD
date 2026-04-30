@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "golden_id": "GE-Y10-AL-QUAD-001",
+    "author": "cowork-seed",
+    "created_at": "2026-04-19",
+    "reviewed_by": null,
+    "review_notes": "Seed example — review pending.",
+    "curriculum_ref": "NC-MA-KS4-A",
+    "exam_board_refs": ["AQA 8300: A6, A18", "Edexcel 1MA1: A18"],
+    "blueprint_section": "5.4"
+  },
+  "input": {
+    "curriculum": "UK Maths",
+    "year_group": "Year 10",
+    "topic": "quadratic formula",
+    "lesson_mode": "teach_topic",
+    "max_segments": 6,
+    "allowed_scene_types": [
+      "title_intro",
+      "definition_card",
+      "equation_solve_steps",
+      "worked_example",
+      "misconception_alert",
+      "recap_summary"
+    ],
+    "student_context": {
+      "confidence_level": "medium",
+      "preferred_pace": "normal"
+    }
+  },
+  "output": {
+    "lesson_title": "Solving Quadratics With the Quadratic Formula",
+    "objective": "Use the quadratic formula to solve ax^2 + bx + c = 0.",
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "scene_type": "title_intro",
+        "duration_target_sec": 6,
+        "narration": "Today we use the quadratic formula to solve equations that don't factorise neatly.",
+        "subtitle": "The Quadratic Formula",
+        "visual": {
+          "title": "The Quadratic Formula",
+          "subtitle": "Solving ax^2 + bx + c = 0",
+          "year_group_badge": "Year 10",
+          "objective_text": "Apply the formula to any quadratic equation."
+        }
+      },
+      {
+        "segment_id": "seg_002",
+        "scene_type": "definition_card",
+        "duration_target_sec": 10,
+        "narration": "The formula: x equals minus b plus or minus the square root of b-squared minus four a c, all over two a.",
+        "subtitle": "x = (−b ± √(b² − 4ac)) / 2a",
+        "visual": {
+          "term": "Quadratic Formula",
+          "definition": "For any quadratic ax^2 + bx + c = 0 with a ≠ 0, the solutions are x = (-b ± √(b² - 4ac)) / (2a).",
+          "key_terms": ["discriminant", "coefficient", "root"],
+          "example": "For x^2 + 3x + 2 = 0: a=1, b=3, c=2."
+        }
+      },
+      {
+        "segment_id": "seg_003",
+        "scene_type": "equation_solve_steps",
+        "duration_target_sec": 20,
+        "narration": "Take x-squared plus five x plus six. Identify a, b, c, substitute, and simplify step by step.",
+        "subtitle": "Solve x² + 5x + 6 = 0",
+        "visual": {
+          "steps": [
+            { "show": "x^2 + 5x + 6 = 0", "highlight": null, "annotation": "a=1, b=5, c=6" },
+            { "show": "x = \\tfrac{-5 \\pm \\sqrt{25 - 24}}{2}", "highlight": ["25 - 24"] },
+            { "show": "x = \\tfrac{-5 \\pm 1}{2}", "highlight": ["1"] },
+            { "show": "x = -2 \\text{ or } x = -3", "highlight": ["-2", "-3"] }
+          ],
+          "transitions": "transform_matching_tex",
+          "color_scheme": "standard_algebra"
+        }
+      },
+      {
+        "segment_id": "seg_004",
+        "scene_type": "worked_example",
+        "duration_target_sec": 22,
+        "narration": "Try two x-squared minus three x minus two. Leave answers to two decimal places if needed.",
+        "subtitle": "Worked example: 2x² − 3x − 2 = 0",
+        "visual": {
+          "problem_statement": "Solve 2x^2 - 3x - 2 = 0 using the quadratic formula.",
+          "steps": [
+            { "step_number": 1, "math": "a = 2, b = -3, c = -2", "explanation": "Identify coefficients." },
+            { "step_number": 2, "math": "b^2 - 4ac = 9 + 16 = 25", "explanation": "Compute the discriminant." },
+            { "step_number": 3, "math": "x = \\tfrac{3 \\pm 5}{4}", "explanation": "Substitute and simplify." },
+            { "step_number": 4, "math": "x = 2 \\text{ or } x = -\\tfrac{1}{2}", "explanation": "Two solutions." }
+          ],
+          "final_answer": "x = 2 or x = -1/2"
+        }
+      },
+      {
+        "segment_id": "seg_005",
+        "scene_type": "misconception_alert",
+        "duration_target_sec": 12,
+        "narration": "A common mistake: forgetting the negative sign on b, or dropping the plus-or-minus. Keep them.",
+        "subtitle": "Mind the signs — and both roots",
+        "visual": {
+          "mistaken_approach": {
+            "statement": "Using +b instead of -b at the start.",
+            "example": "For b=-3, writing +(-3) = -3 but typing +3 in the numerator."
+          },
+          "correct_approach": {
+            "statement": "Substitute b with its sign intact; -b of -3 is +3.",
+            "example": "x = (-(-3) ± √...) / 2a = (3 ± √...) / 2a"
+          },
+          "why_students_make_it": "They confuse 'opposite of b' with 'positive of b' when b is already negative."
+        }
+      },
+      {
+        "segment_id": "seg_006",
+        "scene_type": "recap_summary",
+        "duration_target_sec": 10,
+        "narration": "Recap: identify a b c, compute the discriminant, substitute into the formula, then simplify both roots.",
+        "subtitle": "Identify → discriminant → substitute → simplify",
+        "visual": {
+          "key_points": [
+            "Put the equation in ax² + bx + c = 0 form first.",
+            "Identify a, b, c including signs.",
+            "Compute the discriminant b² − 4ac.",
+            "Substitute into x = (−b ± √discriminant) / 2a.",
+            "Keep both roots unless the discriminant is zero or negative."
+          ],
+          "closing_statement": "You can now solve any quadratic using the formula.",
+          "next_topic_suggestion": "Completing the square"
+        }
+      }
+    ],
+    "branch_templates": [
+      {
+        "trigger_type": "step_justification",
+        "example_question": "What is the discriminant for?",
+        "branch_scene_type": "definition_card",
+        "branch_narration_template": "The discriminant b²-4ac tells us how many real roots exist: positive means two, zero means one, negative means none."
+      },
+      {
+        "trigger_type": "example_request",
+        "example_question": "Show me one with decimal answers.",
+        "branch_scene_type": "worked_example",
+        "branch_narration_template": "Here is a worked example where the roots need rounding to two decimal places."
+      }
+    ]
+  }
+}

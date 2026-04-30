@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "golden_id": "GE-Y9-AL-SIM-001",
+    "author": "cowork-seed",
+    "created_at": "2026-04-19",
+    "reviewed_by": null,
+    "review_notes": "Seed example — the canonical lesson used as the blueprint §5.4 illustrative input/output pair.",
+    "curriculum_ref": "NC-MA-KS3-A",
+    "blueprint_section": "5.4"
+  },
+  "input": {
+    "curriculum": "UK Maths",
+    "year_group": "Year 9",
+    "topic": "simultaneous equations",
+    "lesson_mode": "teach_topic",
+    "max_segments": 6,
+    "allowed_scene_types": [
+      "title_intro",
+      "equation_solve_steps",
+      "graph_function_plot",
+      "worked_example",
+      "misconception_alert",
+      "recap_summary"
+    ],
+    "student_context": {
+      "confidence_level": "medium",
+      "preferred_pace": "normal"
+    }
+  },
+  "output": {
+    "lesson_title": "Solving Simultaneous Equations by Elimination",
+    "objective": "Solve pairs of linear equations using the elimination method.",
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "scene_type": "title_intro",
+        "duration_target_sec": 8,
+        "narration": "Today we are going to learn how to solve simultaneous equations using elimination.",
+        "subtitle": "Simultaneous Equations: Elimination Method",
+        "visual": {
+          "title": "Simultaneous Equations",
+          "subtitle": "The Elimination Method",
+          "year_group_badge": "Year 9",
+          "objective_text": "Solve pairs of equations by eliminating one variable."
+        }
+      },
+      {
+        "segment_id": "seg_002",
+        "scene_type": "equation_solve_steps",
+        "duration_target_sec": 16,
+        "narration": "Add the two equations. The y-terms cancel, leaving a single equation in x.",
+        "subtitle": "Add to eliminate y",
+        "visual": {
+          "steps": [
+            { "show": "2x + y = 7", "highlight": ["y"] },
+            { "show": "x - y = 2", "highlight": ["y"] },
+            { "show": "3x = 9", "highlight": ["3x", "9"] },
+            { "show": "x = 3", "highlight": ["x", "3"] }
+          ],
+          "transitions": "sequential_reveal",
+          "color_scheme": "standard_algebra"
+        }
+      },
+      {
+        "segment_id": "seg_003",
+        "scene_type": "equation_solve_steps",
+        "duration_target_sec": 14,
+        "narration": "Substitute x equals three back into the first equation to find y.",
+        "subtitle": "Substitute back to find y",
+        "visual": {
+          "steps": [
+            { "show": "2(3) + y = 7", "highlight": ["3"] },
+            { "show": "6 + y = 7", "highlight": null },
+            { "show": "y = 1", "highlight": ["y", "1"] }
+          ],
+          "transitions": "transform_matching_tex",
+          "color_scheme": "standard_algebra"
+        }
+      },
+      {
+        "segment_id": "seg_004",
+        "scene_type": "graph_function_plot",
+        "duration_target_sec": 14,
+        "narration": "Graphing both lines shows they cross at the point three, one — the same answer.",
+        "subtitle": "The lines meet at (3, 1)",
+        "visual": {
+          "functions": [
+            { "expression": "7 - 2*x", "color": "blue", "label": "2x + y = 7" },
+            { "expression": "x - 2", "color": "orange", "label": "x - y = 2" }
+          ],
+          "x_range": [-1, 6, 1],
+          "y_range": [-3, 8, 1],
+          "labeled_points": [ { "x": 3, "y": 1, "label": "(3, 1)" } ]
+        }
+      },
+      {
+        "segment_id": "seg_005",
+        "scene_type": "misconception_alert",
+        "duration_target_sec": 12,
+        "narration": "A common mistake is subtracting the equations without checking signs. Line them up and watch the signs.",
+        "subtitle": "Watch the signs when you subtract",
+        "visual": {
+          "mistaken_approach": {
+            "statement": "Subtracting pair-wise without flipping signs correctly.",
+            "example": "(2x + y) - (x - y) treated as (2x + y - x - y)"
+          },
+          "correct_approach": {
+            "statement": "Distribute the minus sign through every term.",
+            "example": "(2x + y) - (x - y) = 2x + y - x + y = x + 2y"
+          },
+          "why_students_make_it": "They forget the minus sign applies to every term inside the brackets."
+        }
+      },
+      {
+        "segment_id": "seg_006",
+        "scene_type": "recap_summary",
+        "duration_target_sec": 10,
+        "narration": "Recap: align, add or subtract to eliminate, solve, substitute back, check.",
+        "subtitle": "Align → eliminate → solve → check",
+        "visual": {
+          "key_points": [
+            "Line up matching variables.",
+            "Add or subtract to eliminate one variable.",
+            "Solve the remaining single-variable equation.",
+            "Substitute back into either original equation.",
+            "Check the answer in both equations."
+          ],
+          "closing_statement": "You can solve simultaneous equations by elimination.",
+          "next_topic_suggestion": "Solving simultaneous equations by substitution"
+        }
+      }
+    ],
+    "branch_templates": [
+      {
+        "trigger_type": "step_justification",
+        "example_question": "Why did you add the equations?",
+        "branch_scene_type": "equation_solve_steps",
+        "branch_narration_template": "Good question. We add the equations to eliminate the y-terms because y and minus y sum to zero."
+      },
+      {
+        "trigger_type": "concept_confusion",
+        "example_question": "What does simultaneous mean?",
+        "branch_scene_type": "definition_card",
+        "branch_narration_template": "Simultaneous means both equations are true at the same time — we want a single (x, y) pair that works for both."
+      }
+    ]
+  }
+}

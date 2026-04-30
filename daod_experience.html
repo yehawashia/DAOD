@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAOD</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --void: #000000;
+    --off-white: #f0ede6;
+    --dim-white: rgba(240,237,230,0.55);
+    --faint: rgba(240,237,230,0.18);
+    --accent: rgba(240,237,230,0.08);
+    --border: rgba(240,237,230,0.12);
+    --text-muted: rgba(240,237,230,0.38);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--void);
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    color: var(--off-white);
+    cursor: default;
+  }
+
+  /* ── INTRO LAYER ─────────────────────────────────── */
+  #intro {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 100;
+    background: var(--void);
+  }
+
+  #logo-svg {
+    width: 140px; height: 140px;
+    opacity: 0;
+    transform: scale(0.7) rotate(-15deg);
+    transition: opacity 1.4s ease, transform 1.4s cubic-bezier(0.16,1,0.3,1);
+    margin-bottom: 48px;
+    filter: invert(1) opacity(0.9);
+  }
+  #logo-svg.show { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  #wordmark {
+    font-size: clamp(52px, 9vw, 96px);
+    letter-spacing: 0.28em;
+    font-weight: 400;
+    color: var(--off-white);
+    overflow: hidden;
+    height: 1.2em;
+    display: flex;
+    gap: 0.02em;
+  }
+  #wordmark span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  #wordmark span.show { opacity: 1; transform: translateY(0); }
+
+  #tagline {
+    margin-top: 28px;
+    font-size: clamp(11px, 1.4vw, 14px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  #tagline.show { opacity: 1; }
+
+  #intro-fade {
+    position: absolute; inset: 0;
+    background: var(--void);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.6s ease;
+  }
+  #intro-fade.out { opacity: 1; pointer-events: all; }
+
+  /* ── PARTICLE FIELD ──────────────────────────────── */
+  #particles {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── MAIN INTERFACE ──────────────────────────────── */
+  #main {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+    padding: 0 24px;
+    gap: 0;
+  }
+  #main.show { opacity: 1; }
+
+  /* logo small persistent */
+  #nav-logo {
+    position: fixed; top: 32px; left: 40px;
+    display: flex; align-items: center; gap: 14px;
+    opacity: 0; transition: opacity 1s ease 0.5s;
+    z-index: 20;
+  }
+  #nav-logo.show { opacity: 1; }
+  #nav-logo img { width: 32px; height: 32px; filter: invert(1) opacity(0.7); }
+  #nav-logo-text {
+    font-size: 13px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* headline */
+  #headline {
+    text-align: center;
+    line-height: 1.05;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  #headline-line1 {
+    display: block;
+    font-size: clamp(36px, 6.5vw, 82px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--off-white);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease 0.3s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.3s;
+  }
+  #headline-line2 {
+    display: block;
+    font-size: clamp(36px, 6.5vw, 82px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--dim-white);
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease 0.55s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.55s;
+  }
+  #main.show #headline-line1,
+  #main.show #headline-line2 { opacity: 1; transform: translateY(0); }
+
+  /* input row */
+  #input-row {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease 0.8s, transform 1s ease 0.8s;
+  }
+  #main.show #input-row { opacity: 1; transform: translateY(0); }
+
+  /* text input */
+  #text-input-wrap {
+    width: 100%;
+    position: relative;
+  }
+  #text-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--off-white);
+    font-family: 'Georgia', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    padding: 16px 0 16px 0;
+    outline: none;
+    caret-color: var(--off-white);
+    transition: border-color 0.3s ease;
+    letter-spacing: 0.01em;
+  }
+  #text-input::placeholder { color: var(--text-muted); font-style: italic; }
+  #text-input:focus { border-bottom-color: rgba(240,237,230,0.45); }
+
+  /* listening transcript overlay */
+  #transcript {
+    position: absolute; inset: 0;
+    padding: 16px 0;
+    font-family: 'Georgia', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--off-white);
+    pointer-events: none;
+    white-space: pre-wrap;
+    letter-spacing: 0.01em;
+    display: none;
+  }
+  #transcript.active { display: block; }
+  #cursor-blink {
+    display: inline-block;
+    width: 2px; height: 1.1em;
+    background: var(--off-white);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* buttons */
+  #btn-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--off-white);
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+  }
+  .btn:hover {
+    background: var(--accent);
+    border-color: rgba(240,237,230,0.28);
+  }
+  .btn:active { transform: scale(0.98); }
+
+  #btn-speak {
+    display: flex; align-items: center; gap: 10px;
+    justify-content: center;
+  }
+  #btn-speak .mic-icon {
+    width: 14px; height: 14px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  #btn-speak .mic-icon::before {
+    content: '';
+    display: block;
+    width: 8px; height: 12px;
+    border: 1.5px solid currentColor;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+  #btn-speak .mic-icon::after {
+    content: '';
+    display: block;
+    width: 12px; height: 6px;
+    border: 1.5px solid currentColor;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin: 1px auto 0;
+  }
+
+  #btn-speak.listening {
+    border-color: rgba(240,237,230,0.5);
+    background: var(--accent);
+    animation: pulse-border 1.5s ease infinite;
+  }
+  @keyframes pulse-border {
+    0%, 100% { border-color: rgba(240,237,230,0.5); }
+    50% { border-color: rgba(240,237,230,0.15); }
+  }
+
+  /* listening ripple rings */
+  .ripple-ring {
+    position: absolute;
+    inset: -1px;
+    border: 1px solid rgba(240,237,230,0.2);
+    border-radius: 0;
+    animation: ripple-out 2s ease infinite;
+    pointer-events: none;
+  }
+  .ripple-ring:nth-child(2) { animation-delay: 0.6s; }
+  .ripple-ring:nth-child(3) { animation-delay: 1.2s; }
+  @keyframes ripple-out {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  /* subtle grid lines — Dow Jones gallery inspo */
+  #grid-lines {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 1;
+    opacity: 0; transition: opacity 2s ease 1s;
+  }
+  #grid-lines.show { opacity: 1; }
+
+  /* bottom caption */
+  #bottom-bar {
+    position: fixed; bottom: 32px;
+    width: 100%; text-align: center;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0; transition: opacity 1s ease 1.5s;
+    z-index: 20;
+  }
+  #bottom-bar.show { opacity: 1; }
+
+  /* ── VOID SCANNING LINE (gallery inspo) ──────────── */
+  #scan-line {
+    position: fixed; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(240,237,230,0.06) 20%,
+      rgba(240,237,230,0.12) 50%,
+      rgba(240,237,230,0.06) 80%,
+      transparent 100%);
+    animation: scan 8s linear infinite;
+    pointer-events: none; z-index: 2;
+    opacity: 0; transition: opacity 1s ease;
+  }
+  #scan-line.show { opacity: 1; }
+  @keyframes scan {
+    0% { top: -1px; }
+    100% { top: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- GRID LINES SVG -->
+<svg id="grid-lines" viewBox="0 0 1440 900" preserveAspectRatio="none">
+  <line x1="480" y1="0" x2="480" y2="900" stroke="rgba(240,237,230,0.04)" stroke-width="1"/>
+  <line x1="960" y1="0" x2="960" y2="900" stroke="rgba(240,237,230,0.04)" stroke-width="1"/>
+  <line x1="0" y1="300" x2="1440" y2="300" stroke="rgba(240,237,230,0.03)" stroke-width="1"/>
+  <line x1="0" y1="600" x2="1440" y2="600" stroke="rgba(240,237,230,0.03)" stroke-width="1"/>
+</svg>
+
+<!-- SCANNING LINE -->
+<div id="scan-line"></div>
+
+<!-- INTRO SCREEN -->
+<div id="intro">
+  <img id="logo-svg" src="/mnt/user-data/uploads/Image.jpg" alt="DAOD logo">
+  <div id="wordmark">
+    <span>D</span><span>A</span><span>O</span><span>D</span>
+  </div>
+  <div id="tagline">Dynamic Animated Object Display</div>
+  <div id="intro-fade"></div>
+</div>
+
+<!-- MAIN INTERFACE -->
+<div id="main">
+  <div id="nav-logo">
+    <img src="/mnt/user-data/uploads/Image.jpg" alt="DAOD">
+    <span id="nav-logo-text">DAOD</span>
+  </div>
+
+  <div id="headline">
+    <span id="headline-line1">What do you want</span>
+    <span id="headline-line2">to learn today?</span>
+  </div>
+
+  <div id="input-row">
+    <div id="text-input-wrap">
+      <input
+        id="text-input"
+        type="text"
+        placeholder="Type a topic — e.g. explain Pythagoras theorem"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <div id="transcript"></div>
+    </div>
+
+    <div id="btn-row">
+      <button class="btn" id="btn-speak" onclick="toggleListen()">
+        <span class="mic-icon"></span>
+        <span id="speak-label">Speak</span>
+      </button>
+      <button class="btn" id="btn-send" onclick="handleSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM BAR -->
+<div id="bottom-bar">DAOD &nbsp;·&nbsp; Learning Engine &nbsp;·&nbsp; Beta</div>
+
+<script>
+// ── PARTICLES ──────────────────────────────────────────────────────────────
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resizeCanvas() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initParticles() {
+  particles = [];
+  const count = Math.floor((W * H) / 18000);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.2 + 0.3,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      a: Math.random() * 0.35 + 0.05,
+      twinkle: Math.random() * Math.PI * 2,
+    });
+  }
+}
+
+function animParticles() {
+  ctx.clearRect(0, 0, W, H);
+  const t = Date.now() * 0.001;
+  for (const p of particles) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W;
+    if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H;
+    if (p.y > H) p.y = 0;
+    const alpha = p.a * (0.6 + 0.4 * Math.sin(t * 0.8 + p.twinkle));
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(240,237,230,${alpha})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(animParticles);
+}
+
+window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+resizeCanvas(); initParticles(); animParticles();
+
+// ── INTRO SEQUENCE ─────────────────────────────────────────────────────────
+function runIntro() {
+  const logo   = document.getElementById('logo-svg');
+  const letters = document.querySelectorAll('#wordmark span');
+  const tagline = document.getElementById('tagline');
+  const fade    = document.getElementById('intro-fade');
+  const main    = document.getElementById('main');
+  const navLogo = document.getElementById('nav-logo');
+  const grid    = document.getElementById('grid-lines');
+  const scan    = document.getElementById('scan-line');
+  const bottom  = document.getElementById('bottom-bar');
+
+  // Logo appears
+  setTimeout(() => logo.classList.add('show'), 300);
+
+  // Letters stagger in
+  letters.forEach((l, i) => {
+    setTimeout(() => l.classList.add('show'), 1100 + i * 140);
+  });
+
+  // Tagline
+  setTimeout(() => tagline.classList.add('show'), 2100);
+
+  // Hold, then fade out
+  setTimeout(() => fade.classList.add('out'), 3600);
+
+  // Show main interface
+  setTimeout(() => {
+    document.getElementById('intro').style.display = 'none';
+    main.classList.add('show');
+    navLogo.classList.add('show');
+    grid.classList.add('show');
+    scan.classList.add('show');
+    bottom.classList.add('show');
+  }, 5200);
+}
+
+runIntro();
+
+// ── SPEECH RECOGNITION ────────────────────────────────────────────────────
+let recognition = null;
+let isListening = false;
+let transcriptBuffer = '';
+
+function toggleListen() {
+  if (isListening) {
+    stopListening();
+  } else {
+    startListening();
+  }
+}
+
+function startListening() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert('Voice input is not supported in this browser. Please use Chrome or Safari.');
+    return;
+  }
+
+  recognition = new SpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-GB';
+
+  const transcriptEl = document.getElementById('transcript');
+  const inputEl      = document.getElementById('text-input');
+  const btn          = document.getElementById('btn-speak');
+  const label        = document.getElementById('speak-label');
+
+  transcriptBuffer = '';
+  transcriptEl.classList.add('active');
+  inputEl.style.opacity = '0';
+  btn.classList.add('listening');
+  label.textContent = 'Listening…';
+  isListening = true;
+
+  // Add ripple rings
+  for (let i = 0; i < 3; i++) {
+    const ring = document.createElement('div');
+    ring.className = 'ripple-ring';
+    btn.appendChild(ring);
+  }
+
+  recognition.onresult = (e) => {
+    let interim = '';
+    let final = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) {
+        final += e.results[i][0].transcript;
+      } else {
+        interim += e.results[i][0].transcript;
+      }
+    }
+    if (final) transcriptBuffer += final;
+    const display = transcriptBuffer + interim;
+    transcriptEl.innerHTML = display + '<span id="cursor-blink"></span>';
+  };
+
+  recognition.onerror = () => stopListening();
+  recognition.onend = () => { if (isListening) recognition.start(); };
+  recognition.start();
+}
+
+function stopListening() {
+  if (recognition) { recognition.stop(); recognition = null; }
+
+  const transcriptEl = document.getElementById('transcript');
+  const inputEl      = document.getElementById('text-input');
+  const btn          = document.getElementById('btn-speak');
+  const label        = document.getElementById('speak-label');
+
+  isListening = false;
+  btn.classList.remove('listening');
+  label.textContent = 'Speak';
+  btn.querySelectorAll('.ripple-ring').forEach(r => r.remove());
+
+  if (transcriptBuffer.trim()) {
+    inputEl.value = transcriptBuffer.trim();
+  }
+  transcriptEl.classList.remove('active');
+  inputEl.style.opacity = '1';
+  transcriptBuffer = '';
+}
+
+// ── SEND ──────────────────────────────────────────────────────────────────
+function handleSend() {
+  if (isListening) stopListening();
+  const val = document.getElementById('text-input').value.trim();
+  if (!val) return;
+
+  // Here: pass to MathScene engine
+  console.log('DAOD query:', val);
+
+  // Visual feedback — brief flash on send
+  const btn = document.getElementById('btn-send');
+  btn.textContent = '→';
+  setTimeout(() => btn.textContent = 'Send', 800);
+}
+
+// Enter key sends
+document.getElementById('text-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleSend();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+-- PLACEHOLDER — Backend agent populates this in Phase 1 from blueprint §12.
+-- Tables required: users, sessions, lesson_plans, segments, interruptions,
+-- timeline_state, render_jobs, exports, generation_logs, training_data,
+-- video_transcripts.
+--
+-- docker-compose.yml mounts this file as /docker-entrypoint-initdb.d/001-schema.sql
+-- so it runs on a fresh postgres volume. Order of DDL matters — keep dependent
+-- tables after their parents.
+
+-- Example skeleton (DELETE before real migration):
+-- CREATE TABLE users (
+--   id TEXT PRIMARY KEY,
+--   email TEXT NOT NULL UNIQUE,
+--   year_group TEXT NOT NULL,
+--   curriculum TEXT NOT NULL DEFAULT 'UK Maths',
+--   confidence_level TEXT,
+--   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+-- );

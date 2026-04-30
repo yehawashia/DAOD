@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/comparison_split.json",
+  "title": "Scene: comparison_split",
+  "description": "Split-screen comparison of two methods or concepts.",
+  "type": "object",
+  "required": ["left", "right"],
+  "additionalProperties": false,
+  "properties": {
+    "left": {
+      "type": "object",
+      "required": ["heading", "content"],
+      "properties": {
+        "heading": { "type": "string" },
+        "content": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "right": {
+      "type": "object",
+      "required": ["heading", "content"],
+      "properties": {
+        "heading": { "type": "string" },
+        "content": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "verdict": { "type": "string", "description": "Optional closing takeaway shown under both panels." }
+  }
+}

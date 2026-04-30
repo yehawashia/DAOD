@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/homework-extraction.schema.json",
+  "title": "Homework Extraction",
+  "description": "Structured output from Qwen2.5-VL when parsing a homework image. Blueprint §8.3. The vision model extracts only; it does NOT solve.",
+  "type": "object",
+  "required": ["detected_questions", "page_quality", "handwritten"],
+  "additionalProperties": false,
+  "properties": {
+    "detected_questions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": ["question_number", "question_text", "question_type", "topic", "year_group_estimate", "student_goal", "diagram_present"],
+        "additionalProperties": false,
+        "properties": {
+          "question_number": { "type": "integer", "minimum": 1 },
+          "question_text": { "type": "string", "minLength": 1 },
+          "question_type": {
+            "type": "string",
+            "enum": [
+              "algebraic_equation",
+              "word_problem",
+              "geometry",
+              "graph",
+              "statistics",
+              "probability",
+              "number",
+              "fraction",
+              "ratio",
+              "measures",
+              "other"
+            ]
+          },
+          "topic": { "type": "string" },
+          "year_group_estimate": { "type": "string", "pattern": "^Year ([1-9]|1[0-3])$" },
+          "detected_elements": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["equation", "diagram", "table", "graph", "text", "image"] }
+          },
+          "student_goal": {
+            "type": "string",
+            "examples": ["find_x", "calculate_area", "prove", "simplify", "factorise"]
+          },
+          "diagram_present": { "type": "boolean" }
+        }
+      }
+    },
+    "page_quality": {
+      "type": "string",
+      "enum": ["good", "fair", "poor"]
+    },
+    "handwritten": { "type": "boolean" }
+  }
+}

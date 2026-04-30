@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/lesson-plan-request.schema.json",
+  "title": "Lesson Plan Request",
+  "description": "Input to the fine-tuned Qwen lesson planner. Derived from blueprint §19.1 and §5.4.",
+  "type": "object",
+  "required": ["curriculum", "year_group", "lesson_mode", "allowed_scene_types"],
+  "additionalProperties": false,
+  "properties": {
+    "curriculum": {
+      "type": "string",
+      "const": "UK Maths"
+    },
+    "year_group": {
+      "type": "string",
+      "pattern": "^Year ([1-9]|1[0-3])$",
+      "examples": ["Year 5", "Year 9", "Year 11"]
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic name — required for teach_topic mode.",
+      "minLength": 2,
+      "examples": ["simultaneous equations", "area of a circle"]
+    },
+    "lesson_mode": {
+      "type": "string",
+      "enum": ["teach_topic", "explain_problem"]
+    },
+    "max_segments": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "default": 6
+    },
+    "allowed_scene_types": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "equation_solve_steps",
+          "equation_balance",
+          "graph_function_plot",
+          "graph_transformation",
+          "geometry_construction",
+          "geometry_proof",
+          "number_line_operation",
+          "fraction_visual",
+          "table_reveal",
+          "worked_example",
+          "comparison_split",
+          "definition_card",
+          "recap_summary",
+          "title_intro",
+          "misconception_alert"
+        ]
+      }
+    },
+    "student_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confidence_level": { "type": "string", "enum": ["low", "medium", "high"] },
+        "preferred_pace": { "type": "string", "enum": ["slow", "normal", "fast"] }
+      }
+    },
+    "problem_context": {
+      "type": "object",
+      "description": "Present only when lesson_mode = explain_problem. Provides the extracted problem from homework mode.",
+      "required": ["question_text"],
+      "additionalProperties": false,
+      "properties": {
+        "question_text": { "type": "string", "minLength": 1 },
+        "question_type": { "type": "string" },
+        "diagram_present": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lesson_mode": { "const": "teach_topic" } } },
+      "then": { "required": ["topic"] }
+    },
+    {
+      "if": { "properties": { "lesson_mode": { "const": "explain_problem" } } },
+      "then": { "required": ["problem_context"] }
+    }
+  ]
+}

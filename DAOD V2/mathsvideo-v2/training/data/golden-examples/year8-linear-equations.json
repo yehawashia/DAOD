@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "golden_id": "GE-Y8-AL-LIN-001",
+    "author": "cowork-seed",
+    "created_at": "2026-04-19",
+    "reviewed_by": null,
+    "review_notes": "Seed example — review pending per blueprint §5.4.",
+    "curriculum_ref": "NC-MA-KS3-A",
+    "blueprint_section": "5.4"
+  },
+  "input": {
+    "curriculum": "UK Maths",
+    "year_group": "Year 8",
+    "topic": "linear equations with unknowns on both sides",
+    "lesson_mode": "teach_topic",
+    "max_segments": 6,
+    "allowed_scene_types": [
+      "title_intro",
+      "equation_balance",
+      "equation_solve_steps",
+      "worked_example",
+      "misconception_alert",
+      "recap_summary"
+    ],
+    "student_context": {
+      "confidence_level": "medium",
+      "preferred_pace": "normal"
+    }
+  },
+  "output": {
+    "lesson_title": "Solving Equations With x on Both Sides",
+    "objective": "Solve linear equations where the variable appears on both sides by moving terms with inverse operations.",
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "scene_type": "title_intro",
+        "duration_target_sec": 6,
+        "narration": "Today we solve equations where the letter appears on both sides of the equals sign.",
+        "subtitle": "Unknowns on Both Sides",
+        "visual": {
+          "title": "Linear Equations",
+          "subtitle": "Unknowns on Both Sides",
+          "year_group_badge": "Year 8",
+          "objective_text": "Get all x-terms to one side using inverse operations."
+        }
+      },
+      {
+        "segment_id": "seg_002",
+        "scene_type": "equation_balance",
+        "duration_target_sec": 12,
+        "narration": "Think of the equation as scales. Whatever we do to one side, we must do to the other.",
+        "subtitle": "Balance both sides",
+        "visual": {
+          "initial_equation": "5x + 3 = 2x + 15",
+          "operations": [
+            { "operation": "subtract", "value": "2x", "narration_note": "Take 2x from both sides to gather x-terms." },
+            { "operation": "subtract", "value": "3", "narration_note": "Take 3 from both sides to isolate x." },
+            { "operation": "divide", "value": "3", "narration_note": "Divide both sides by 3." }
+          ],
+          "show_scales_metaphor": true
+        }
+      },
+      {
+        "segment_id": "seg_003",
+        "scene_type": "equation_solve_steps",
+        "duration_target_sec": 16,
+        "narration": "Start with 5x plus 3 equals 2x plus 15. Subtract 2x, then 3, then divide by 3.",
+        "subtitle": "Solve 5x + 3 = 2x + 15",
+        "visual": {
+          "steps": [
+            { "show": "5x + 3 = 2x + 15", "highlight": ["5x", "2x"] },
+            { "show": "3x + 3 = 15", "highlight": ["3x"] },
+            { "show": "3x = 12", "highlight": ["12"] },
+            { "show": "x = 4", "highlight": ["x", "4"] }
+          ],
+          "transitions": "transform_matching_tex",
+          "color_scheme": "standard_algebra"
+        }
+      },
+      {
+        "segment_id": "seg_004",
+        "scene_type": "worked_example",
+        "duration_target_sec": 18,
+        "narration": "Try 7x minus 4 equals 3x plus 16. Follow the same three steps.",
+        "subtitle": "Worked example: 7x − 4 = 3x + 16",
+        "visual": {
+          "problem_statement": "Solve 7x - 4 = 3x + 16.",
+          "steps": [
+            { "step_number": 1, "math": "7x - 4 = 3x + 16", "explanation": "Starting equation." },
+            { "step_number": 2, "math": "4x - 4 = 16", "explanation": "Subtract 3x from both sides." },
+            { "step_number": 3, "math": "4x = 20", "explanation": "Add 4 to both sides." },
+            { "step_number": 4, "math": "x = 5", "explanation": "Divide both sides by 4." }
+          ],
+          "final_answer": "x = 5"
+        }
+      },
+      {
+        "segment_id": "seg_005",
+        "scene_type": "misconception_alert",
+        "duration_target_sec": 12,
+        "narration": "A common mistake is only changing one side when you move a term. Both sides must stay balanced.",
+        "subtitle": "Operate on BOTH sides",
+        "visual": {
+          "mistaken_approach": {
+            "statement": "Subtracting 2x from only the left side.",
+            "example": "5x + 3 = 2x + 15 → 3x + 3 = 2x + 15 (wrong)"
+          },
+          "correct_approach": {
+            "statement": "Subtract 2x from both sides simultaneously.",
+            "example": "5x + 3 = 2x + 15 → 3x + 3 = 15 (correct)"
+          },
+          "why_students_make_it": "They think of one side as the 'answer side' and only operate on the other."
+        }
+      },
+      {
+        "segment_id": "seg_006",
+        "scene_type": "recap_summary",
+        "duration_target_sec": 10,
+        "narration": "Recap: collect x-terms on one side, numbers on the other, keep both sides balanced, divide last.",
+        "subtitle": "Collect, balance, divide",
+        "visual": {
+          "key_points": [
+            "Move x-terms to one side using inverse operations.",
+            "Move number terms to the other side.",
+            "Keep both sides balanced at every step.",
+            "Divide last to isolate x."
+          ],
+          "closing_statement": "You can now solve linear equations with x on both sides.",
+          "next_topic_suggestion": "Linear equations involving brackets"
+        }
+      }
+    ],
+    "branch_templates": [
+      {
+        "trigger_type": "step_justification",
+        "example_question": "Why subtract 2x from both sides first?",
+        "branch_scene_type": "definition_card",
+        "branch_narration_template": "We subtract 2x so all the x-terms end up on one side, making the equation simpler to solve."
+      },
+      {
+        "trigger_type": "example_request",
+        "example_question": "Can you show another example?",
+        "branch_scene_type": "worked_example",
+        "branch_narration_template": "Here is another worked example following the same steps."
+      }
+    ]
+  }
+}

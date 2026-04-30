@@ -1,0 +1,174 @@
+# docker-compose.yml — Mathsvideo V2 local orchestration skeleton.
+# Coding agents fill in the actual Dockerfiles per service; this file defines
+# how they talk to each other, what ports they expose, and where volumes live.
+#
+# Bring up the stack:
+#   docker compose up -d postgres redis        # infra only
+#   docker compose up -d                        # everything
+#
+# Service-to-service DNS: use the service name (e.g. `postgres`, `redis`).
+
+version: "3.9"
+
+services:
+  # ── Infra ───────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: mathsvideo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      POSTGRES_DB: ${POSTGRES_DB:-mathsvideo}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/db/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: mathsvideo-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Optional: MinIO for S3-compatible local object storage
+  minio:
+    image: minio/minio:latest
+    container_name: mathsvideo-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  # ── Application services ───────────────────────────────────────────────
+  api:
+    # PLACEHOLDER Dockerfile path — backend agent creates this in Phase 1.
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mathsvideo-api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-mathsvideo}
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend/src:/app/src:ro   # hot reload in dev; remove in prod
+      - assets_data:/app/storage/assets
+
+  manim-worker:
+    # PLACEHOLDER Dockerfile — Manim agent creates at manim-templates/docker/Dockerfile
+    build:
+      context: ./manim-templates
+      dockerfile: docker/Dockerfile
+    # NOTE: scale with --scale manim-worker=3 (or whatever MANIM_WORKER_COUNT says)
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      REDIS_URL: redis://redis:6379
+      DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-mathsvideo}
+      S3_ENDPOINT: http://minio:9000
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    volumes:
+      - manim_cache:/tmp/manim-sandbox
+      - assets_data:/app/storage/assets
+    # Manim is CPU-bound; give it room
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4g
+
+  tts-service:
+    # PLACEHOLDER — Kokoro wrapper service
+    build:
+      context: ./backend
+      dockerfile: services/tts/Dockerfile
+    container_name: mathsvideo-tts
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3002:3002"
+    volumes:
+      - tts_models:/app/models            # cache Kokoro weights
+    # Uncomment if running on GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  stt-service:
+    # PLACEHOLDER — Whisper/faster-whisper wrapper
+    build:
+      context: ./backend
+      dockerfile: services/stt/Dockerfile
+    container_name: mathsvideo-stt
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3003:3003"
+    volumes:
+      - stt_models:/app/models            # cache Whisper weights
+
+  # Optional in dev: the frontend. Coding agents may prefer to run locally.
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mathsvideo-frontend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      VITE_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  assets_data:
+  manim_cache:
+  tts_models:
+  stt_models:
+
+networks:
+  default:
+    name: mathsvideo_net

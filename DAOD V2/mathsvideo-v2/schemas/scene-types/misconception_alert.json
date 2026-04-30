@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/misconception_alert.json",
+  "title": "Scene: misconception_alert",
+  "description": "Common mistake visualization with correction.",
+  "type": "object",
+  "required": ["mistaken_approach", "correct_approach"],
+  "additionalProperties": false,
+  "properties": {
+    "mistaken_approach": {
+      "type": "object",
+      "required": ["statement"],
+      "properties": {
+        "statement": { "type": "string" },
+        "example": { "type": "string" }
+      }
+    },
+    "correct_approach": {
+      "type": "object",
+      "required": ["statement"],
+      "properties": {
+        "statement": { "type": "string" },
+        "example": { "type": "string" }
+      }
+    },
+    "why_students_make_it": { "type": "string" }
+  }
+}

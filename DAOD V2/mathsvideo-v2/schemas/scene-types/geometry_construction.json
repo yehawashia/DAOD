@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/geometry_construction.json",
+  "title": "Scene: geometry_construction",
+  "description": "Points, lines, angles, circles with measurement labels.",
+  "type": "object",
+  "required": ["elements"],
+  "additionalProperties": false,
+  "properties": {
+    "elements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "type": "string", "enum": ["point", "line", "segment", "ray", "circle", "polygon", "angle_arc"] },
+          "id": { "type": "string" },
+          "coords": { "type": "array", "items": { "type": "number" } },
+          "label": { "type": "string" },
+          "measurement": { "type": "string", "examples": ["60°", "5 cm"] }
+        }
+      }
+    },
+    "background_grid": { "type": "boolean", "default": false }
+  }
+}

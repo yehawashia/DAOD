@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/segment.schema.json",
+  "title": "Lesson Segment",
+  "description": "One segment of a lesson plan. Produced by the planner, consumed by the Manim template engine and Kokoro TTS. Blueprint §4.3, §5.4.",
+  "type": "object",
+  "required": ["segment_id", "scene_type", "duration_target_sec", "narration", "subtitle", "visual"],
+  "additionalProperties": false,
+  "properties": {
+    "segment_id": {
+      "type": "string",
+      "pattern": "^(seg|br)_[a-zA-Z0-9_]+$",
+      "examples": ["seg_001", "br_001"]
+    },
+    "scene_type": {
+      "type": "string",
+      "enum": [
+        "equation_solve_steps",
+        "equation_balance",
+        "graph_function_plot",
+        "graph_transformation",
+        "geometry_construction",
+        "geometry_proof",
+        "number_line_operation",
+        "fraction_visual",
+        "table_reveal",
+        "worked_example",
+        "comparison_split",
+        "definition_card",
+        "recap_summary",
+        "title_intro",
+        "misconception_alert"
+      ]
+    },
+    "duration_target_sec": {
+      "type": "number",
+      "minimum": 3,
+      "maximum": 45,
+      "description": "Target duration in seconds. Manim will render to roughly this; Kokoro will pace narration accordingly."
+    },
+    "narration": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 400,
+      "description": "Max ~40 words per planner system prompt. Sent to Kokoro TTS."
+    },
+    "subtitle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Short displayable subtitle — not the full narration."
+    },
+    "visual": {
+      "type": "object",
+      "description": "Scene-type-specific payload. Must conform to schemas/scene-types/<scene_type>.json."
+    }
+  }
+}

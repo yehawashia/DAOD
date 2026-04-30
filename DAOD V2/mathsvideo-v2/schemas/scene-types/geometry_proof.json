@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/geometry_proof.json",
+  "title": "Scene: geometry_proof",
+  "description": "Step-by-step geometric proof with diagram annotation.",
+  "type": "object",
+  "required": ["diagram", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "diagram": {
+      "type": "object",
+      "required": ["elements"],
+      "properties": {
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": { "type": "string", "enum": ["point", "segment", "circle", "polygon", "angle_arc"] },
+              "id": { "type": "string" },
+              "coords": { "type": "array", "items": { "type": "number" } },
+              "label": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["statement"],
+        "properties": {
+          "statement": { "type": "string" },
+          "reason": { "type": "string", "description": "e.g. 'alternate angles', 'isosceles triangle'." },
+          "highlight_element_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

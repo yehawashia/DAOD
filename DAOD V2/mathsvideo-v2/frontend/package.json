@@ -1,0 +1,18 @@
+{
+  "name": "mathsvideo-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mathsvideo V2 frontend — React + Remotion Player. See docs/agent-briefs/BRIEF-frontend.md.",
+  "scripts": {
+    "dev": "echo 'PLACEHOLDER — frontend agent: replace with vite/next dev command'",
+    "build": "echo 'PLACEHOLDER — frontend agent: replace with production build command'",
+    "test": "echo 'PLACEHOLDER — frontend agent: replace with test runner'",
+    "lint": "echo 'PLACEHOLDER — frontend agent: replace with eslint/tsc'"
+  },
+  "dependencies": {
+    "//": "PLACEHOLDER — pin versions during Phase 1. Required: react, react-dom, @remotion/player, @remotion/cli, zustand (or @reduxjs/toolkit), tailwindcss, typescript."
+  },
+  "devDependencies": {
+    "//": "PLACEHOLDER — typescript, vite, eslint, prettier, vitest/jest + @testing-library/react."
+  }
+}

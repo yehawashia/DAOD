@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/table_reveal.json",
+  "title": "Scene: table_reveal",
+  "description": "Data table with progressive row/column reveal.",
+  "type": "object",
+  "required": ["headers", "rows"],
+  "additionalProperties": false,
+  "properties": {
+    "headers": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "items": { "type": ["string", "number"] }
+      }
+    },
+    "reveal_mode": { "type": "string", "enum": ["row_by_row", "column_by_column", "cell_by_cell", "all_at_once"], "default": "row_by_row" },
+    "highlight_cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "row": { "type": "integer" },
+          "col": { "type": "integer" },
+          "color": { "type": "string" }
+        }
+      }
+    }
+  }
+}

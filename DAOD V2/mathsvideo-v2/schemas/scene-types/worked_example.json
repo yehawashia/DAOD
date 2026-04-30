@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/worked_example.json",
+  "title": "Scene: worked_example",
+  "description": "Full worked solution with step numbering and annotation.",
+  "type": "object",
+  "required": ["problem_statement", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "problem_statement": { "type": "string" },
+    "steps": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["step_number", "math"],
+        "properties": {
+          "step_number": { "type": "integer", "minimum": 1 },
+          "math": { "type": "string" },
+          "explanation": { "type": "string" }
+        }
+      }
+    },
+    "final_answer": { "type": "string" }
+  }
+}

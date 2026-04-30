@@ -1,0 +1,19 @@
+{
+  "name": "mathsvideo-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mathsvideo V2 backend — API gateway, lesson service, worker orchestration. See docs/agent-briefs/BRIEF-backend.md.",
+  "scripts": {
+    "dev": "echo 'PLACEHOLDER — backend agent: replace with ts-node-dev/nodemon'",
+    "build": "echo 'PLACEHOLDER — backend agent: replace with tsc build'",
+    "start": "echo 'PLACEHOLDER — backend agent: replace with node dist/index.js'",
+    "migrate": "echo 'PLACEHOLDER — wire to the migration tool you choose'",
+    "test": "echo 'PLACEHOLDER — backend agent: replace with test runner'"
+  },
+  "dependencies": {
+    "//": "PLACEHOLDER — required: express or fastify, pg, bullmq, ioredis, ws, zod or ajv (schema validation), pino (logging). Pin during Phase 1."
+  },
+  "devDependencies": {
+    "//": "PLACEHOLDER — typescript, @types/node, ts-node-dev, vitest/jest, supertest."
+  }
+}

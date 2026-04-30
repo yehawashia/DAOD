@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/title_intro.json",
+  "title": "Scene: title_intro",
+  "description": "Topic title card with year group and objective.",
+  "type": "object",
+  "required": ["title"],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "year_group_badge": { "type": "string", "pattern": "^Year ([1-9]|1[0-3])$" },
+    "objective_text": { "type": "string" }
+  }
+}

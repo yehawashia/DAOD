@@ -1,0 +1,91 @@
+year_group,key_stage,topic,subtopic,curriculum_ref,exam_board_ref
+Year 5,KS2,Number & Place Value,Read/write numbers to 1 000 000,NC-MA-Y5-NPV,
+Year 5,KS2,Number & Place Value,Negative numbers in context,NC-MA-Y5-NPV,
+Year 5,KS2,Addition & Subtraction,Written methods multi-digit,NC-MA-Y5-AS,
+Year 5,KS2,Multiplication & Division,Long multiplication,NC-MA-Y5-MD,
+Year 5,KS2,Multiplication & Division,Short division,NC-MA-Y5-MD,
+Year 5,KS2,Fractions,Add and subtract fractions same denominator,NC-MA-Y5-FR,
+Year 5,KS2,Fractions,Recognise mixed numbers and improper fractions,NC-MA-Y5-FR,
+Year 5,KS2,Decimals & Percentages,Decimals up to three places,NC-MA-Y5-DP,
+Year 5,KS2,Measurement,Convert metric units,NC-MA-Y5-ME,
+Year 5,KS2,Geometry,Properties of 3D shapes,NC-MA-Y5-GE,
+Year 5,KS2,Geometry,Angles measurement,NC-MA-Y5-GE,
+Year 5,KS2,Statistics,Line graphs,NC-MA-Y5-ST,
+Year 6,KS2,Number & Place Value,Numbers up to 10 000 000,NC-MA-Y6-NPV,
+Year 6,KS2,Four Operations,BIDMAS/Order of operations,NC-MA-Y6-4O,
+Year 6,KS2,Fractions,Add/subtract different denominators,NC-MA-Y6-FR,
+Year 6,KS2,Fractions,Multiply fractions,NC-MA-Y6-FR,
+Year 6,KS2,Fractions,Divide fractions by whole numbers,NC-MA-Y6-FR,
+Year 6,KS2,Ratio & Proportion,Scale factors,NC-MA-Y6-RP,
+Year 6,KS2,Ratio & Proportion,Percentages of amounts,NC-MA-Y6-RP,
+Year 6,KS2,Algebra,Formulae and expressions,NC-MA-Y6-AL,
+Year 6,KS2,Algebra,Linear sequences,NC-MA-Y6-AL,
+Year 6,KS2,Geometry,Circles - radius/diameter/circumference,NC-MA-Y6-GE,
+Year 6,KS2,Geometry,Area of triangles and parallelograms,NC-MA-Y6-GE,
+Year 6,KS2,Statistics,Pie charts,NC-MA-Y6-ST,
+Year 6,KS2,Statistics,Mean as an average,NC-MA-Y6-ST,
+Year 7,KS3,Number,Place value including decimals,NC-MA-KS3-N,
+Year 7,KS3,Number,Negative numbers (directed number),NC-MA-KS3-N,
+Year 7,KS3,Number,Factors multiples primes,NC-MA-KS3-N,
+Year 7,KS3,Number,Powers and roots,NC-MA-KS3-N,
+Year 7,KS3,Fractions,Equivalent fractions add/subtract,NC-MA-KS3-N,
+Year 7,KS3,Fractions,Multiplying and dividing fractions,NC-MA-KS3-N,
+Year 7,KS3,Decimals & Percentages,Percentages of amounts,NC-MA-KS3-N,
+Year 7,KS3,Algebra,Expressions simplifying,NC-MA-KS3-A,
+Year 7,KS3,Algebra,Substitution,NC-MA-KS3-A,
+Year 7,KS3,Algebra,Linear equations one step/two step,NC-MA-KS3-A,
+Year 7,KS3,Ratio & Proportion,Ratio notation and simplifying,NC-MA-KS3-RP,
+Year 7,KS3,Geometry,Coordinates all four quadrants,NC-MA-KS3-G,
+Year 7,KS3,Geometry,Angles on straight line and at a point,NC-MA-KS3-G,
+Year 7,KS3,Geometry,Angles in polygons,NC-MA-KS3-G,
+Year 7,KS3,Statistics,Mean median mode range,NC-MA-KS3-S,
+Year 7,KS3,Probability,Basic probability outcomes,NC-MA-KS3-P,
+Year 8,KS3,Number,Index laws,NC-MA-KS3-N,
+Year 8,KS3,Number,Standard form,NC-MA-KS3-N,
+Year 8,KS3,Algebra,Linear equations with unknowns both sides,NC-MA-KS3-A,
+Year 8,KS3,Algebra,Expanding single brackets,NC-MA-KS3-A,
+Year 8,KS3,Algebra,Factorising common factor,NC-MA-KS3-A,
+Year 8,KS3,Algebra,Linear graphs y=mx+c,NC-MA-KS3-A,
+Year 8,KS3,Algebra,Sequences nth term linear,NC-MA-KS3-A,
+Year 8,KS3,Ratio & Proportion,Direct proportion,NC-MA-KS3-RP,
+Year 8,KS3,Percentages,Percentage change,NC-MA-KS3-N,
+Year 8,KS3,Geometry,Angles in parallel lines,NC-MA-KS3-G,
+Year 8,KS3,Geometry,Area circles,NC-MA-KS3-G,
+Year 8,KS3,Geometry,Volume prisms and cylinders,NC-MA-KS3-G,
+Year 8,KS3,Statistics,Scatter graphs and correlation,NC-MA-KS3-S,
+Year 9,KS3,Algebra,Simultaneous equations by elimination,NC-MA-KS3-A,
+Year 9,KS3,Algebra,Simultaneous equations by substitution,NC-MA-KS3-A,
+Year 9,KS3,Algebra,Expanding double brackets,NC-MA-KS3-A,
+Year 9,KS3,Algebra,Factorising quadratics,NC-MA-KS3-A,
+Year 9,KS3,Algebra,Inequalities one variable,NC-MA-KS3-A,
+Year 9,KS3,Algebra,Rearranging formulae,NC-MA-KS3-A,
+Year 9,KS3,Geometry,Pythagoras theorem,NC-MA-KS3-G,
+Year 9,KS3,Geometry,Trigonometry (intro) SOHCAHTOA,NC-MA-KS3-G,
+Year 9,KS3,Geometry,Transformations reflect rotate translate enlarge,NC-MA-KS3-G,
+Year 9,KS3,Probability,Probability trees,NC-MA-KS3-P,
+Year 9,KS3,Statistics,Frequency polygons,NC-MA-KS3-S,
+Year 10,KS4,Number,Surds simplify rationalise,NC-MA-KS4-N,AQA-1 / EDX-1
+Year 10,KS4,Algebra,Solving quadratic equations by factorising,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Algebra,Completing the square,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Algebra,Quadratic formula,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Algebra,Graphs of quadratics,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Algebra,Algebraic fractions simplify,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Algebra,Inequalities quadratic,NC-MA-KS4-A,AQA-2 / EDX-2
+Year 10,KS4,Ratio & Proportion,Inverse proportion,NC-MA-KS4-RP,AQA-3 / EDX-3
+Year 10,KS4,Ratio & Proportion,Compound interest/depreciation,NC-MA-KS4-RP,AQA-3 / EDX-3
+Year 10,KS4,Geometry,Bearings,NC-MA-KS4-G,AQA-4 / EDX-4
+Year 10,KS4,Geometry,Sine and cosine rules,NC-MA-KS4-G,AQA-4 / EDX-4 (Higher)
+Year 10,KS4,Geometry,Similar shapes area/volume,NC-MA-KS4-G,AQA-4 / EDX-4
+Year 10,KS4,Probability,Conditional probability,NC-MA-KS4-P,AQA-5 / EDX-5
+Year 10,KS4,Statistics,Cumulative frequency,NC-MA-KS4-S,AQA-6 / EDX-6
+Year 11,KS4,Algebra,Algebraic proof,NC-MA-KS4-A,AQA-2 / EDX-2 (Higher)
+Year 11,KS4,Algebra,Functions and inverse functions,NC-MA-KS4-A,AQA-2 / EDX-2 (Higher)
+Year 11,KS4,Algebra,Iterative methods,NC-MA-KS4-A,AQA-2 / EDX-2 (Higher)
+Year 11,KS4,Algebra,Graph transformations,NC-MA-KS4-A,AQA-2 / EDX-2 (Higher)
+Year 11,KS4,Geometry,Circle theorems,NC-MA-KS4-G,AQA-4 / EDX-4 (Higher)
+Year 11,KS4,Geometry,Vectors,NC-MA-KS4-G,AQA-4 / EDX-4 (Higher)
+Year 11,KS4,Geometry,Arc length and sector area,NC-MA-KS4-G,AQA-4 / EDX-4
+Year 11,KS4,Geometry,3D trigonometry,NC-MA-KS4-G,AQA-4 / EDX-4 (Higher)
+Year 11,KS4,Statistics,Histograms with unequal widths,NC-MA-KS4-S,AQA-6 / EDX-6 (Higher)
+Year 11,KS4,Statistics,Box plots,NC-MA-KS4-S,AQA-6 / EDX-6
+Year 11,KS4,Probability,Venn diagrams,NC-MA-KS4-P,AQA-5 / EDX-5

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/timeline-state.schema.json",
+  "title": "Timeline State",
+  "description": "Frame-level timeline graph with main path and branches. Blueprint §10.1.",
+  "type": "object",
+  "required": ["session_id", "fps", "main_path"],
+  "additionalProperties": false,
+  "properties": {
+    "session_id": { "type": "string", "minLength": 1 },
+    "fps": { "type": "integer", "enum": [24, 25, 30, 60], "default": 30 },
+    "main_path": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/timelineSegment" }
+    },
+    "branches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["interrupt_id", "trigger_frame", "branch_path", "return_to_frame"],
+        "additionalProperties": false,
+        "properties": {
+          "interrupt_id": { "type": "string" },
+          "trigger_frame": { "type": "integer", "minimum": 0 },
+          "branch_path": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/timelineSegment" }
+          },
+          "return_to_frame": { "type": "integer", "minimum": 0 },
+          "parent_interrupt_id": { "type": "string" }
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonically incremented on every timeline update for optimistic concurrency."
+    }
+  },
+  "$defs": {
+    "timelineSegment": {
+      "type": "object",
+      "required": ["segment_id", "start_frame", "end_frame", "video_url", "audio_url"],
+      "additionalProperties": false,
+      "properties": {
+        "segment_id": { "type": "string" },
+        "start_frame": { "type": "integer", "minimum": 0 },
+        "end_frame": { "type": "integer", "minimum": 0 },
+        "video_url": { "type": "string", "format": "uri" },
+        "audio_url": { "type": "string", "format": "uri" },
+        "subtitle_url": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

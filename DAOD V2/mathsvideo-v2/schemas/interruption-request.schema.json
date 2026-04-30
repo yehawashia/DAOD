@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/interruption-request.schema.json",
+  "title": "Interruption Request",
+  "description": "Submitted when a student interrupts mid-playback. Blueprint §19.3.",
+  "type": "object",
+  "required": ["session_id", "from_segment_id", "at_frame", "question_text", "question_source", "local_context"],
+  "additionalProperties": false,
+  "properties": {
+    "session_id": { "type": "string", "minLength": 1 },
+    "from_segment_id": { "type": "string", "minLength": 1 },
+    "at_frame": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Absolute frame position in the timeline when the pause was triggered."
+    },
+    "question_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "question_source": {
+      "type": "string",
+      "enum": ["typed", "voice"]
+    },
+    "local_context": {
+      "type": "object",
+      "required": ["topic", "current_step", "year_group"],
+      "additionalProperties": false,
+      "properties": {
+        "topic": { "type": "string", "minLength": 1 },
+        "current_step": { "type": "string", "minLength": 1 },
+        "year_group": { "type": "string", "pattern": "^Year ([1-9]|1[0-3])$" }
+      }
+    },
+    "parent_interrupt_id": {
+      "type": "string",
+      "description": "Only present for nested interruptions (depth ≤ 2)."
+    }
+  }
+}

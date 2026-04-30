@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/equation_solve_steps.json",
+  "title": "Scene: equation_solve_steps",
+  "description": "Step-by-step algebraic manipulation with highlighting and transitions. Canonical example from blueprint §4.3.",
+  "type": "object",
+  "required": ["steps"],
+  "additionalProperties": false,
+  "properties": {
+    "steps": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["show"],
+        "additionalProperties": false,
+        "properties": {
+          "show": { "type": "string", "description": "LaTeX or plain-string equation to display at this step." },
+          "highlight": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "Substrings to highlight at this step."
+          },
+          "annotation": { "type": "string", "description": "Optional side-note or arrow label." }
+        }
+      }
+    },
+    "transitions": {
+      "type": "string",
+      "enum": ["sequential_reveal", "transform_matching_tex", "fade", "write"],
+      "default": "sequential_reveal"
+    },
+    "color_scheme": {
+      "type": "string",
+      "enum": ["standard_algebra", "high_contrast", "colorblind_safe"],
+      "default": "standard_algebra"
+    }
+  }
+}

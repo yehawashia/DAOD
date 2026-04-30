@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathsvideo.dev/schemas/scene-types/graph_function_plot.json",
+  "title": "Scene: graph_function_plot",
+  "description": "Axes, function plotting, labeled points, tangent lines, area shading.",
+  "type": "object",
+  "required": ["functions", "x_range", "y_range"],
+  "additionalProperties": false,
+  "properties": {
+    "functions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["expression"],
+        "properties": {
+          "expression": { "type": "string", "description": "e.g. 'x^2 - 4' or 'sin(x)'" },
+          "color": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "x_range": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "number" } },
+    "y_range": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "number" } },
+    "labeled_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["x", "y", "label"],
+        "properties": {
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "tangent_at": { "type": "number", "description": "Optional x-value to draw a tangent line at." },
+    "shade_region": {
+      "type": "object",
+      "properties": {
+        "from_x": { "type": "number" },
+        "to_x": { "type": "number" },
+        "color": { "type": "string" }
+      }
+    }
+  }
+}

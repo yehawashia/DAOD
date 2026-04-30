@@ -1,0 +1,145 @@
+{
+  "_meta": {
+    "golden_id": "GE-Y7-FR-ADD-001",
+    "author": "cowork-seed",
+    "created_at": "2026-04-19",
+    "reviewed_by": null,
+    "review_notes": "Seed example — review pending per blueprint §5.4. Validate against lesson-plan-request and lesson-plan-response schemas.",
+    "curriculum_ref": "NC-MA-KS3-N",
+    "blueprint_section": "5.4"
+  },
+  "input": {
+    "curriculum": "UK Maths",
+    "year_group": "Year 7",
+    "topic": "adding fractions with different denominators",
+    "lesson_mode": "teach_topic",
+    "max_segments": 6,
+    "allowed_scene_types": [
+      "title_intro",
+      "fraction_visual",
+      "equation_solve_steps",
+      "worked_example",
+      "misconception_alert",
+      "recap_summary"
+    ],
+    "student_context": {
+      "confidence_level": "low",
+      "preferred_pace": "normal"
+    }
+  },
+  "output": {
+    "lesson_title": "Adding Fractions With Different Denominators",
+    "objective": "Add two fractions with different denominators by finding a common denominator.",
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "scene_type": "title_intro",
+        "duration_target_sec": 6,
+        "narration": "Today we will learn how to add fractions when the bottom numbers are different.",
+        "subtitle": "Adding Fractions: Different Denominators",
+        "visual": {
+          "title": "Adding Fractions",
+          "subtitle": "Different Denominators",
+          "year_group_badge": "Year 7",
+          "objective_text": "Add two fractions using a common denominator."
+        }
+      },
+      {
+        "segment_id": "seg_002",
+        "scene_type": "fraction_visual",
+        "duration_target_sec": 12,
+        "narration": "Picture one half and one third as bars. The pieces are different sizes, so we can't just add the numerators.",
+        "subtitle": "Different-sized pieces can't be added directly",
+        "visual": {
+          "representation": "bar",
+          "fractions": [
+            { "numerator": 1, "denominator": 2, "label": "1/2", "color": "blue" },
+            { "numerator": 1, "denominator": 3, "label": "1/3", "color": "green" }
+          ],
+          "operation": "compare"
+        }
+      },
+      {
+        "segment_id": "seg_003",
+        "scene_type": "equation_solve_steps",
+        "duration_target_sec": 16,
+        "narration": "Rewrite each fraction with six as the denominator. One half becomes three sixths; one third becomes two sixths.",
+        "subtitle": "Rewrite with a common denominator of 6",
+        "visual": {
+          "steps": [
+            { "show": "\\tfrac{1}{2} + \\tfrac{1}{3}", "highlight": null },
+            { "show": "\\tfrac{3}{6} + \\tfrac{2}{6}", "highlight": ["6", "6"] },
+            { "show": "\\tfrac{5}{6}", "highlight": ["5", "6"] }
+          ],
+          "transitions": "transform_matching_tex",
+          "color_scheme": "standard_algebra"
+        }
+      },
+      {
+        "segment_id": "seg_004",
+        "scene_type": "worked_example",
+        "duration_target_sec": 18,
+        "narration": "Now try two fifths plus one fourth. The common denominator is twenty.",
+        "subtitle": "Worked example: 2/5 + 1/4",
+        "visual": {
+          "problem_statement": "Work out 2/5 + 1/4.",
+          "steps": [
+            { "step_number": 1, "math": "\\tfrac{2}{5} + \\tfrac{1}{4}", "explanation": "Find a common denominator." },
+            { "step_number": 2, "math": "\\tfrac{8}{20} + \\tfrac{5}{20}", "explanation": "Rewrite both fractions with 20 as the denominator." },
+            { "step_number": 3, "math": "\\tfrac{13}{20}", "explanation": "Add the numerators." }
+          ],
+          "final_answer": "13/20"
+        }
+      },
+      {
+        "segment_id": "seg_005",
+        "scene_type": "misconception_alert",
+        "duration_target_sec": 12,
+        "narration": "A common mistake is adding the bottom numbers too. Remember the denominators stay the same once they match.",
+        "subtitle": "Don't add the denominators",
+        "visual": {
+          "mistaken_approach": {
+            "statement": "Students often add both numerators and denominators.",
+            "example": "1/2 + 1/3 = 2/5 (wrong)"
+          },
+          "correct_approach": {
+            "statement": "Match the denominators first, then add only the numerators.",
+            "example": "1/2 + 1/3 = 3/6 + 2/6 = 5/6"
+          },
+          "why_students_make_it": "They apply the rule for multiplying fractions to adding by mistake."
+        }
+      },
+      {
+        "segment_id": "seg_006",
+        "scene_type": "recap_summary",
+        "duration_target_sec": 10,
+        "narration": "Recap: find a common denominator, rewrite both fractions, then add the numerators only.",
+        "subtitle": "Common denominator → add numerators",
+        "visual": {
+          "key_points": [
+            "Find a common denominator.",
+            "Rewrite each fraction with that denominator.",
+            "Add the numerators — the denominator stays the same.",
+            "Simplify if possible."
+          ],
+          "closing_statement": "You can now add fractions with different denominators.",
+          "next_topic_suggestion": "Subtracting fractions with different denominators"
+        }
+      }
+    ],
+    "branch_templates": [
+      {
+        "trigger_type": "step_justification",
+        "example_question": "Why do we use 6 as the common denominator?",
+        "branch_scene_type": "definition_card",
+        "branch_narration_template": "We pick 6 because it is the lowest common multiple of 2 and 3 — the smallest number both denominators divide into."
+      },
+      {
+        "trigger_type": "concept_confusion",
+        "example_question": "What is a common denominator?",
+        "branch_scene_type": "fraction_visual",
+        "branch_narration_template": "A common denominator is a number that both fractions can share as their bottom value. It lets us compare and add equal-sized pieces."
+      }
+    ]
+  }
+}

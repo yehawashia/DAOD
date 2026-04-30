@@ -1,0 +1,179 @@
+{
+  "_meta": {
+    "description": "Benchmark set for the lesson planner. Every model version (prompt-only baseline, each LoRA checkpoint) must run against this set and report metrics per BRIEF-qa.md. Blueprint §15.3 targets 50 prompts at alpha; this is the seed 20 for Phase 1.",
+    "generated_at": "2026-04-19",
+    "spec_version": "v0.1",
+    "required_metrics_per_run": [
+      "schema_validity_rate",
+      "scene_type_compatibility",
+      "render_success_rate",
+      "timeline_consistency",
+      "topic_submit_to_first_audio_p90_ms",
+      "topic_submit_to_first_video_p90_ms",
+      "interruption_to_first_branch_video_p90_ms",
+      "math_correctness_sample_n10"
+    ]
+  },
+  "prompts": [
+    {
+      "benchmark_id": "BM-001",
+      "year_group": "Year 5",
+      "topic": "add and subtract fractions with the same denominator",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "fraction_visual", "equation_solve_steps", "worked_example", "recap_summary"],
+      "correctness_notes": "Adding 3/8 + 2/8 should yield 5/8 without changing denominator. No common-denominator step needed here."
+    },
+    {
+      "benchmark_id": "BM-002",
+      "year_group": "Year 5",
+      "topic": "area of triangles and parallelograms",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "geometry_construction", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "Area of triangle = 1/2 × base × height. Height must be perpendicular to base — common misconception to use slant."
+    },
+    {
+      "benchmark_id": "BM-003",
+      "year_group": "Year 6",
+      "topic": "percentages of amounts",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "fraction_visual", "equation_solve_steps", "worked_example", "recap_summary"],
+      "correctness_notes": "25% of 80 = 20. Connect percent to fraction /100."
+    },
+    {
+      "benchmark_id": "BM-004",
+      "year_group": "Year 6",
+      "topic": "BIDMAS order of operations",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "3 + 4 × 2 = 11, not 14. Multiplication before addition."
+    },
+    {
+      "benchmark_id": "BM-005",
+      "year_group": "Year 7",
+      "topic": "negative numbers arithmetic",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "number_line_operation", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "-3 - -5 = 2. Two negatives make a positive when subtracting a negative."
+    },
+    {
+      "benchmark_id": "BM-006",
+      "year_group": "Year 7",
+      "topic": "angles on a straight line and at a point",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "geometry_construction", "equation_solve_steps", "worked_example", "recap_summary"],
+      "correctness_notes": "Angles on a straight line sum to 180°; at a point sum to 360°."
+    },
+    {
+      "benchmark_id": "BM-007",
+      "year_group": "Year 8",
+      "topic": "linear graphs y = mx + c",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "graph_function_plot", "worked_example", "recap_summary"],
+      "correctness_notes": "m is gradient, c is y-intercept. Plot y = 2x + 1 should cross y-axis at 1 with gradient 2."
+    },
+    {
+      "benchmark_id": "BM-008",
+      "year_group": "Year 8",
+      "topic": "expanding single brackets",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "3(x + 4) = 3x + 12. Distribute to every term inside; common mistake omits the 12."
+    },
+    {
+      "benchmark_id": "BM-009",
+      "year_group": "Year 8",
+      "topic": "percentage change",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "equation_solve_steps", "worked_example", "recap_summary"],
+      "correctness_notes": "Percentage change = (new - old) / old × 100. Keep sign for decrease."
+    },
+    {
+      "benchmark_id": "BM-010",
+      "year_group": "Year 9",
+      "topic": "factorising quadratics x^2 + bx + c",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "x^2 + 5x + 6 = (x+2)(x+3). Find two numbers that multiply to c and sum to b."
+    },
+    {
+      "benchmark_id": "BM-011",
+      "year_group": "Year 9",
+      "topic": "Pythagoras theorem",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "geometry_construction", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "a^2 + b^2 = c^2 where c is the hypotenuse. Must identify hypotenuse correctly."
+    },
+    {
+      "benchmark_id": "BM-012",
+      "year_group": "Year 9",
+      "topic": "probability trees for two events",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "geometry_construction", "worked_example", "recap_summary"],
+      "correctness_notes": "Multiply along branches; add along mutually exclusive branches. Independence matters."
+    },
+    {
+      "benchmark_id": "BM-013",
+      "year_group": "Year 10",
+      "topic": "completing the square for quadratics",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "equation_solve_steps", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "x^2 + 6x + 5 = (x+3)^2 - 4. Halve coefficient of x, square, subtract same."
+    },
+    {
+      "benchmark_id": "BM-014",
+      "year_group": "Year 10",
+      "topic": "sine rule in non-right-angled triangles",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "geometry_construction", "definition_card", "worked_example", "recap_summary"],
+      "correctness_notes": "a/sinA = b/sinB = c/sinC. Use when you have an opposite pair."
+    },
+    {
+      "benchmark_id": "BM-015",
+      "year_group": "Year 10",
+      "topic": "compound interest",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "equation_solve_steps", "worked_example", "recap_summary"],
+      "correctness_notes": "A = P(1 + r/100)^n. Distinct from simple interest — emphasize the exponent."
+    },
+    {
+      "benchmark_id": "BM-016",
+      "year_group": "Year 11",
+      "topic": "circle theorems: angles in the same segment",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "geometry_construction", "geometry_proof", "recap_summary"],
+      "correctness_notes": "Angles subtended by the same chord on the same side are equal."
+    },
+    {
+      "benchmark_id": "BM-017",
+      "year_group": "Year 11",
+      "topic": "vectors — addition and scalar multiplication",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "geometry_construction", "worked_example", "recap_summary"],
+      "correctness_notes": "Column vector addition componentwise; scalar multiplication multiplies each component. Position vs displacement distinction."
+    },
+    {
+      "benchmark_id": "BM-018",
+      "year_group": "Year 11",
+      "topic": "histograms with unequal class widths",
+      "lesson_mode": "teach_topic",
+      "expected_scene_types": ["title_intro", "definition_card", "table_reveal", "worked_example", "misconception_alert", "recap_summary"],
+      "correctness_notes": "Frequency density = frequency / class width. Area of bar, not height, represents frequency."
+    },
+    {
+      "benchmark_id": "BM-019",
+      "year_group": "Year 10",
+      "topic": "explain this homework problem: solve 3x + 5 = 20",
+      "lesson_mode": "explain_problem",
+      "expected_scene_types": ["title_intro", "equation_balance", "equation_solve_steps", "recap_summary"],
+      "correctness_notes": "Tests explain_problem mode end-to-end. x = 5. Should scope to this single problem, not re-teach linear equations."
+    },
+    {
+      "benchmark_id": "BM-020",
+      "year_group": "Year 9",
+      "topic": "explain this homework problem: a right-angled triangle has legs 3cm and 4cm, find the hypotenuse",
+      "lesson_mode": "explain_problem",
+      "expected_scene_types": ["title_intro", "geometry_construction", "equation_solve_steps", "recap_summary"],
+      "correctness_notes": "Tests explain_problem with geometry. Hypotenuse = 5 cm. Classic 3-4-5 triangle."
+    }
+  ]
+}
